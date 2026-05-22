@@ -13,9 +13,10 @@ export function cleanUsername(username: string): string {
 /**
  * Fetches player public profile from Chess.com
  */
-export async function fetchPlayerProfile(username: string): Promise<ChessComProfile> {
+export async function fetchPlayerProfile(username: string, bypassCache?: boolean): Promise<ChessComProfile> {
   const clean = cleanUsername(username);
-  const res = await fetch(`${PROXY_BASE}/pub/player/${clean}`);
+  const url = `${PROXY_BASE}/pub/player/${clean}${bypassCache ? '?nocache=true' : ''}`;
+  const res = await fetch(url);
   if (!res.ok) {
     if (res.status === 404) {
       throw new Error(`Chess.com player "${username}" not found.`);
@@ -28,9 +29,10 @@ export async function fetchPlayerProfile(username: string): Promise<ChessComProf
 /**
  * Fetches player statistics (ratings, records)
  */
-export async function fetchPlayerStats(username: string): Promise<ChessComStats> {
+export async function fetchPlayerStats(username: string, bypassCache?: boolean): Promise<ChessComStats> {
   const clean = cleanUsername(username);
-  const res = await fetch(`${PROXY_BASE}/pub/player/${clean}/stats`);
+  const url = `${PROXY_BASE}/pub/player/${clean}/stats${bypassCache ? '?nocache=true' : ''}`;
+  const res = await fetch(url);
   if (!res.ok) {
     throw new Error(`Failed to fetch player stats: ${res.statusText}`);
   }
@@ -40,9 +42,10 @@ export async function fetchPlayerStats(username: string): Promise<ChessComStats>
 /**
  * Fetches the list of monthly game archive URLs for a player
  */
-export async function fetchPlayerArchives(username: string): Promise<string[]> {
+export async function fetchPlayerArchives(username: string, bypassCache?: boolean): Promise<string[]> {
   const clean = cleanUsername(username);
-  const res = await fetch(`${PROXY_BASE}/pub/player/${clean}/games/archives`);
+  const url = `${PROXY_BASE}/pub/player/${clean}/games/archives${bypassCache ? '?nocache=true' : ''}`;
+  const res = await fetch(url);
   if (!res.ok) {
     throw new Error(`Failed to fetch game archives list: ${res.statusText}`);
   }
@@ -54,10 +57,12 @@ export async function fetchPlayerArchives(username: string): Promise<string[]> {
  * Fetches games for a specific month using either an archive URL or a year/month pair.
  * Translates chess.com absolute URLs to use our local proxy to avoid CORS.
  */
-export async function fetchMonthlyGames(archiveUrl: string): Promise<ChessComGame[]> {
+export async function fetchMonthlyGames(archiveUrl: string, bypassCache?: boolean): Promise<ChessComGame[]> {
   // Translate "https://api.chess.com/pub/player/..." to "/api/chess/pub/player/..."
   const proxyUrl = archiveUrl.replace('https://api.chess.com/', `${PROXY_BASE}/`);
-  const res = await fetch(proxyUrl);
+  const separator = proxyUrl.includes('?') ? '&' : '?';
+  const url = `${proxyUrl}${bypassCache ? `${separator}nocache=true` : ''}`;
+  const res = await fetch(url);
   if (!res.ok) {
     throw new Error(`Failed to fetch games for archive: ${archiveUrl}`);
   }

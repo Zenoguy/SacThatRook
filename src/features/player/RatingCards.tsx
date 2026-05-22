@@ -24,7 +24,7 @@ export default function RatingCards({ stats }: RatingCardsProps) {
       title: 'Rapid',
       icon: Timer,
       accentClass: 'text-neon-blue',
-      accentGlow: 'glow-card-blue',
+      accentGlow: 'glow-card glow-card-blue',
       data: stats.chess_rapid,
     },
     {
@@ -32,7 +32,7 @@ export default function RatingCards({ stats }: RatingCardsProps) {
       title: 'Bullet',
       icon: Rocket,
       accentClass: 'text-neon-red',
-      accentGlow: 'glow-card-red',
+      accentGlow: 'glow-card glow-card-red',
       data: stats.chess_bullet,
     },
   ];

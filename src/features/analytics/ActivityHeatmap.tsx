@@ -5,11 +5,19 @@ import React, { useMemo } from 'react';
 import { ParsedGame } from '@/types/chess';
 import { Calendar, HelpCircle } from 'lucide-react';
 
-interface ActivityHeatmapProps {
-  games: ParsedGame[];
+interface Confidence {
+  tier: 'HIGH' | 'MEDIUM' | 'LOW';
+  gamesAnalyzed: number;
+  yearsCount: number;
+  coverageStr: string;
 }
 
-export default function ActivityHeatmap({ games }: ActivityHeatmapProps) {
+interface ActivityHeatmapProps {
+  games: ParsedGame[];
+  confidence?: Confidence;
+}
+
+export default function ActivityHeatmap({ games, confidence }: ActivityHeatmapProps) {
   // Compute counts per date string (YYYY-MM-DD)
   const activityMap = useMemo(() => {
     const counts: Record<string, number> = {};
@@ -88,10 +96,19 @@ export default function ActivityHeatmap({ games }: ActivityHeatmapProps) {
     <div className="glow-card rounded-2xl p-6 md:p-8 flex flex-col gap-5 w-full">
       {/* Header */}
       <div className="border-b border-zinc-900 pb-5">
-        <h4 className="font-mono text-sm font-bold text-white uppercase tracking-widest flex items-center gap-2">
-          <Calendar className="h-4 w-4 text-neon-green" />
-          Combat Activity Grid
-        </h4>
+        <div className="flex flex-wrap items-center gap-3">
+          <h4 className="font-mono text-sm font-bold text-white uppercase tracking-widest flex items-center gap-2">
+            <Calendar className="h-4 w-4 text-neon-green" />
+            Combat Activity Grid
+          </h4>
+          {confidence && (
+            <span className={`inline-flex items-center gap-1 rounded bg-zinc-950 border border-zinc-900 px-2 py-0.5 font-mono text-[9px] font-bold uppercase ${
+              confidence.tier === 'HIGH' ? 'text-neon-green border-neon-green/30' : confidence.tier === 'MEDIUM' ? 'text-neon-blue border-neon-blue/30' : 'text-neon-red border-neon-red/30'
+            }`} title={confidence.coverageStr}>
+              {confidence.tier} CONFIDENCE
+            </span>
+          )}
+        </div>
         <p className="text-[10px] text-zinc-500 font-mono mt-0.5">Chronological heat map of battles fought</p>
       </div>
 

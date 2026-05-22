@@ -3,7 +3,60 @@
 
 import React from 'react';
 import { ChessComProfile } from '@/types/chess';
-import { Calendar, User, Eye, ExternalLink } from 'lucide-react';
+import { Calendar, User, Eye, ExternalLink, Globe } from 'lucide-react';
+
+const COUNTRY_NAMES: Record<string, string> = {
+  US: 'United States',
+  IN: 'India',
+  RU: 'Russia',
+  UA: 'Ukraine',
+  GB: 'United Kingdom',
+  CA: 'Canada',
+  FR: 'France',
+  DE: 'Germany',
+  ES: 'Spain',
+  BR: 'Brazil',
+  PL: 'Poland',
+  IT: 'Italy',
+  NL: 'Netherlands',
+  AR: 'Argentina',
+  MX: 'Mexico',
+  TR: 'Turkey',
+  RO: 'Romania',
+  AM: 'Armenia',
+  CN: 'China',
+  AU: 'Australia',
+  NO: 'Norway',
+  SE: 'Sweden',
+  AZ: 'Azerbaijan',
+  GE: 'Georgia',
+  HU: 'Hungary',
+  UZ: 'Uzbekistan',
+  VN: 'Vietnam',
+  PH: 'Philippines',
+  EG: 'Egypt',
+  IR: 'Iran',
+  KZ: 'Kazakhstan',
+  ID: 'Indonesia',
+  RS: 'Serbia',
+  HR: 'Croatia',
+  CZ: 'Czech Republic',
+  BE: 'Belgium',
+  AT: 'Austria',
+  CH: 'Switzerland',
+  IL: 'Israel',
+  GR: 'Greece',
+  PE: 'Peru',
+  CO: 'Colombia',
+  CL: 'Chile',
+  ZA: 'South Africa',
+  NZ: 'New Zealand',
+  JP: 'Japan',
+  KR: 'South Korea',
+  SG: 'Singapore',
+  MY: 'Malaysia',
+  XX: 'International'
+};
 
 interface ProfileHeaderProps {
   profile: ChessComProfile;
@@ -25,6 +78,25 @@ export default function ProfileHeader({ profile }: ProfileHeaderProps) {
     hour: '2-digit',
     minute: '2-digit'
   });
+
+  // Extract country code from URL (e.g., "https://api.chess.com/pub/country/US" -> "US")
+  const countryCode = profile.country ? profile.country.split('/').pop()?.toUpperCase() : '';
+
+  // Generate flag emoji
+  const getFlagEmoji = (code: string) => {
+    if (!code || code.length !== 2 || code === 'XX') return '🌐';
+    const codePoints = code
+      .split('')
+      .map(char => 127397 + char.charCodeAt(0));
+    try {
+      return String.fromCodePoint(...codePoints);
+    } catch {
+      return '🌐';
+    }
+  };
+
+  const flagEmoji = countryCode ? getFlagEmoji(countryCode) : '';
+  const countryName = countryCode ? (COUNTRY_NAMES[countryCode] || countryCode) : '';
 
   return (
     <div className="glow-card rounded-2xl p-6 md:p-8 flex flex-col md:flex-row items-center md:items-start gap-6 md:gap-8 w-full">
@@ -95,6 +167,15 @@ export default function ProfileHeader({ profile }: ProfileHeaderProps) {
             <User className="h-4 w-4 text-zinc-400" />
             <span>Followers: <strong className="text-zinc-300">{profile.followers.toLocaleString()}</strong></span>
           </div>
+          {countryName && (
+            <>
+              <div className="hidden md:block text-zinc-800">•</div>
+              <div className="flex items-center gap-1.5">
+                <Globe className="h-4 w-4 text-purple-400" />
+                <span>Nation: <strong className="text-zinc-300">{flagEmoji} {countryName}</strong></span>
+              </div>
+            </>
+          )}
         </div>
       </div>
 

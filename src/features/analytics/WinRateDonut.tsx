@@ -6,11 +6,19 @@ import { ParsedGame } from '@/types/chess';
 import { PieChart, Pie, Cell } from 'recharts';
 import { Target, HelpCircle } from 'lucide-react';
 
-interface WinRateDonutProps {
-  games: ParsedGame[];
+interface Confidence {
+  tier: 'HIGH' | 'MEDIUM' | 'LOW';
+  gamesAnalyzed: number;
+  yearsCount: number;
+  coverageStr: string;
 }
 
-export default function WinRateDonut({ games }: WinRateDonutProps) {
+interface WinRateDonutProps {
+  games: ParsedGame[];
+  confidence?: Confidence;
+}
+
+export default function WinRateDonut({ games, confidence }: WinRateDonutProps) {
   const data = useMemo(() => {
     let wins = 0;
     let losses = 0;
@@ -48,10 +56,19 @@ export default function WinRateDonut({ games }: WinRateDonutProps) {
     <div className="glow-card rounded-2xl p-6 md:p-8 flex flex-col justify-between h-full w-full">
       {/* Header */}
       <div className="border-b border-zinc-900 pb-5 mb-5">
-        <h4 className="font-mono text-sm font-bold text-white uppercase tracking-widest flex items-center gap-2">
-          <Target className="h-4 w-4 text-neon-green" />
-          Combat Breakdown
-        </h4>
+        <div className="flex flex-wrap items-center gap-3">
+          <h4 className="font-mono text-sm font-bold text-white uppercase tracking-widest flex items-center gap-2">
+            <Target className="h-4 w-4 text-neon-green" />
+            Combat Breakdown
+          </h4>
+          {confidence && (
+            <span className={`inline-flex items-center gap-1 rounded bg-zinc-950 border border-zinc-900 px-2 py-0.5 font-mono text-[9px] font-bold uppercase ${
+              confidence.tier === 'HIGH' ? 'text-neon-green border-neon-green/30' : confidence.tier === 'MEDIUM' ? 'text-neon-blue border-neon-blue/30' : 'text-neon-red border-neon-red/30'
+            }`} title={confidence.coverageStr}>
+              {confidence.tier} CONFIDENCE
+            </span>
+          )}
+        </div>
         <p className="text-[10px] text-zinc-500 font-mono mt-0.5">Win, draw, loss efficiency ratio</p>
       </div>
 

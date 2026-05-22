@@ -14,9 +14,16 @@ export interface DBAnalytics {
   data: any; // Serialized computed analytics
 }
 
+export interface DBArchive {
+  url: string;
+  username: string;
+  fetchedAt: number;
+}
+
 class SacThatRookDB extends Dexie {
   games!: Table<DBGame>;
   analytics!: Table<DBAnalytics>;
+  archives!: Table<DBArchive>;
 
   constructor() {
     super('SacThatRookDB');
@@ -24,7 +31,13 @@ class SacThatRookDB extends Dexie {
       games: 'uuid, username, endTime',
       analytics: 'username, computedAt'
     });
+    this.version(2).stores({
+      games: 'uuid, username, endTime',
+      analytics: 'username, computedAt',
+      archives: 'url, username'
+    });
   }
 }
 
 export const db = new SacThatRookDB();
+

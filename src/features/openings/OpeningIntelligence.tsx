@@ -22,8 +22,16 @@ import {
   Brain
 } from 'lucide-react';
 
+interface Confidence {
+  tier: 'HIGH' | 'MEDIUM' | 'LOW';
+  gamesAnalyzed: number;
+  yearsCount: number;
+  coverageStr: string;
+}
+
 interface OpeningIntelligenceProps {
   games: ParsedGame[];
+  confidence?: Confidence;
 }
 
 // Type definitions for internal metrics processing
@@ -41,7 +49,7 @@ interface FamilyStat {
   blackGames: number;
 }
 
-export default function OpeningIntelligence({ games }: OpeningIntelligenceProps) {
+export default function OpeningIntelligence({ games, confidence }: OpeningIntelligenceProps) {
   // Global filter for Game Mode
   const [timeClassFilter, setTimeClassFilter] = useState<'ALL' | 'bullet' | 'blitz' | 'rapid' | 'daily'>('ALL');
 
@@ -418,10 +426,19 @@ export default function OpeningIntelligence({ games }: OpeningIntelligenceProps)
       {/* Primary Section Header & Global Game Mode Filter */}
       <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 border-b border-zinc-900 pb-5">
         <div>
-          <h3 className="font-mono text-base font-extrabold text-white tracking-widest uppercase flex items-center gap-2">
-            <Compass className="h-5 w-5 text-neon-green" />
-            OPENING STRATEGY
-          </h3>
+          <div className="flex flex-wrap items-center gap-3">
+            <h3 className="font-mono text-base font-extrabold text-white tracking-widest uppercase flex items-center gap-2">
+              <Compass className="h-5 w-5 text-neon-green" />
+              OPENING STRATEGY
+            </h3>
+            {confidence && (
+              <span className={`inline-flex items-center gap-1 rounded bg-zinc-950 border border-zinc-900 px-2 py-0.5 font-mono text-[9px] font-bold uppercase ${
+                confidence.tier === 'HIGH' ? 'text-neon-green border-neon-green/30' : confidence.tier === 'MEDIUM' ? 'text-neon-blue border-neon-blue/30' : 'text-neon-red border-neon-red/30'
+              }`} title={confidence.coverageStr}>
+                {confidence.tier} CONFIDENCE
+              </span>
+            )}
+          </div>
           <p className="text-[10px] text-zinc-500 font-mono mt-0.5 uppercase tracking-wide">
             Tactical DNA analytics & positional comfort classification
           </p>
