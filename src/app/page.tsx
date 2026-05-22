@@ -117,7 +117,7 @@ export default function Home() {
       {/* Footer */}
       <footer className="border-t border-zinc-900 bg-[#040609] py-8 z-10 font-mono text-[10px] text-zinc-500 text-center">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <p>© {new Date().getFullYear()} SacThatRook. All Rights Reserved. Created by chess aficionados.</p>
+          <p>© {new Date().getFullYear()} SacThatRook. All Rights Reserved. Created by Zeno_guy.</p>
           <p className="mt-2 text-zinc-655">This application is powered by the public Chess.com API but is not affiliated with Chess.com.</p>
         </div>
       </footer>
