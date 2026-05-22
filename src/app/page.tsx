@@ -112,6 +112,86 @@ export default function Home() {
 
         {/* Top Players Telemetry Grid */}
         <TopPlayers />
+
+        {/* About the System */}
+        <section className="w-full max-w-7xl px-4 sm:px-6 lg:px-8 mt-24 mb-12">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
+            {/* Left panel: Big atmospheric explanation */}
+            <div className="lg:col-span-5 space-y-6 text-left">
+              <div className="space-y-1">
+                <span className="font-mono text-[10px] font-black uppercase tracking-widest text-neon-green">
+                  SYSTEM DOSSIER // CLASSIFIED INFO
+                </span>
+                <h2 className="text-3xl font-extrabold text-white tracking-wider font-mono uppercase">
+                  ABOUT THE SYSTEM
+                </h2>
+              </div>
+              
+              <p className="font-sans text-sm text-zinc-450 leading-relaxed max-w-md">
+                SacThatRook analyzes public chess games to uncover opening habits, tactical tendencies, streak behavior, tilt patterns, and repertoire identity.
+              </p>
+
+              <div className="space-y-2 border-l border-neon-green/30 pl-4 py-1 font-mono text-xs text-zinc-500 uppercase tracking-wider">
+                <p>No accounts.</p>
+                <p>No cloud profiling.</p>
+                <p>No engine spam.</p>
+              </div>
+
+              <p className="font-mono text-xs text-neon-green/80 font-bold uppercase tracking-widest">
+                // Just raw chess telemetry.
+              </p>
+            </div>
+
+            {/* Right panel: 3-4 intelligence cards */}
+            <div className="lg:col-span-7 grid grid-cols-1 sm:grid-cols-2 gap-6 text-left">
+              
+              {/* Card 1 */}
+              <div className="glow-card rounded-xl p-6 bg-zinc-950/20 border border-zinc-900/60 flex flex-col gap-3">
+                <span className="font-mono text-[9px] font-extrabold text-neon-green uppercase tracking-widest">// SEC_01</span>
+                <h4 className="font-mono text-xs font-bold text-white uppercase tracking-widest">
+                  NO ENGINE REQUIRED
+                </h4>
+                <p className="text-[11px] text-zinc-400 font-sans leading-relaxed">
+                  Most insights are derived directly from PGNs, structures, openings, and statistical patterns.
+                </p>
+              </div>
+
+              {/* Card 2 */}
+              <div className="glow-card glow-card-blue rounded-xl p-6 bg-zinc-950/20 border border-zinc-900/60 flex flex-col gap-3">
+                <span className="font-mono text-[9px] font-extrabold text-neon-blue uppercase tracking-widest">// SEC_02</span>
+                <h4 className="font-mono text-xs font-bold text-white uppercase tracking-widest">
+                  CLIENT-SIDE PROCESSING
+                </h4>
+                <p className="text-[11px] text-zinc-400 font-sans leading-relaxed">
+                  Analysis runs locally in your browser using incremental PGN parsing and worker threads.
+                </p>
+              </div>
+
+              {/* Card 3 */}
+              <div className="glow-card glow-card-purple rounded-xl p-6 bg-zinc-950/20 border border-zinc-900/60 flex flex-col gap-3">
+                <span className="font-mono text-[9px] font-extrabold text-purple-400 uppercase tracking-widest">// SEC_03</span>
+                <h4 className="font-mono text-xs font-bold text-white uppercase tracking-widest">
+                  TACTICAL DOSSIERS
+                </h4>
+                <p className="text-[11px] text-zinc-400 font-sans leading-relaxed">
+                  Every profile becomes a playable identity: openings, collapses, chaos index, and comfort zones.
+                </p>
+              </div>
+
+              {/* Card 4 */}
+              <div className="glow-card glow-card-red rounded-xl p-6 bg-zinc-950/20 border border-zinc-900/60 flex flex-col gap-3">
+                <span className="font-mono text-[9px] font-extrabold text-neon-red uppercase tracking-widest">// SEC_04</span>
+                <h4 className="font-mono text-xs font-bold text-white uppercase tracking-widest">
+                  NO SIGNUPS
+                </h4>
+                <p className="text-[11px] text-zinc-400 font-sans leading-relaxed">
+                  Enter a username. Run the scan. Disappear into the blitz queue again.
+                </p>
+              </div>
+
+            </div>
+          </div>
+        </section>
       </main>
 
       {/* Footer */}
