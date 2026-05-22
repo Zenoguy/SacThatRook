@@ -4,7 +4,7 @@
 import React, { useMemo } from 'react';
 import { ParsedGame } from '@/types/chess';
 import { PieChart, Pie, Cell } from 'recharts';
-import { Target, HelpCircle } from 'lucide-react';
+import { Target, HelpCircle, Info } from 'lucide-react';
 
 interface Confidence {
   tier: 'HIGH' | 'MEDIUM' | 'LOW';
@@ -53,13 +53,19 @@ export default function WinRateDonut({ games, confidence }: WinRateDonutProps) {
   }
 
   return (
-    <div className="glow-card rounded-2xl p-6 md:p-8 flex flex-col justify-between h-full w-full">
+    <div className="glow-card rounded-2xl p-6 md:p-8 flex flex-col justify-between h-full w-full" style={{ overflow: 'visible' }}>
       {/* Header */}
       <div className="border-b border-zinc-900 pb-5 mb-5">
         <div className="flex flex-wrap items-center gap-3">
-          <h4 className="font-mono text-sm font-bold text-white uppercase tracking-widest flex items-center gap-2">
+          <h4 className="font-mono text-sm font-bold text-white uppercase tracking-widest flex items-center gap-1.5">
             <Target className="h-4 w-4 text-neon-green" />
             Combat Breakdown
+            <span className="group relative flex items-center">
+              <Info className="h-3.5 w-3.5 text-zinc-500 hover:text-zinc-300 cursor-pointer transition-colors" />
+              <span className="pointer-events-none absolute bottom-full left-1/2 -translate-x-1/2 mb-2 w-48 scale-90 opacity-0 group-hover:scale-100 group-hover:opacity-100 transition-all duration-200 origin-bottom p-2 bg-[#0c0e16] border border-zinc-800 text-[10px] text-zinc-400 rounded-lg shadow-xl font-mono normal-case tracking-normal z-50 text-center font-normal">
+                Metrics and ratings are for standard chess games only.
+              </span>
+            </span>
           </h4>
           {confidence && (
             <span className={`inline-flex items-center gap-1 rounded bg-zinc-950 border border-zinc-900 px-2 py-0.5 font-mono text-[9px] font-bold uppercase ${

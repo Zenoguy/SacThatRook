@@ -469,7 +469,7 @@ export default function OpeningIntelligence({ games, confidence }: OpeningIntell
               MODULE 1: OPENING DNA (Full-Width Banner)
              ============================================== */}
           {dnaMetrics && (
-            <div className="glow-card rounded-2xl border border-zinc-900 bg-[#0a0d14]/65 p-6 md:p-8">
+            <div className="glow-card rounded-2xl border border-zinc-900 bg-[#0a0d14]/65 p-6 md:p-8" style={{ overflow: 'visible' }}>
               <div className="flex flex-col gap-1 border-b border-zinc-900 pb-4 mb-6">
                 <span className="font-mono text-[9px] font-black uppercase tracking-widest text-neon-green">
                   MODULE 01 // GENETIC DIAGNOSTICS
@@ -477,6 +477,12 @@ export default function OpeningIntelligence({ games, confidence }: OpeningIntell
                 <h4 className="font-mono text-sm font-bold text-white uppercase tracking-widest flex items-center gap-1.5">
                   <Brain className="h-4 w-4 text-neon-green" />
                   OPENING DNA
+                  <span className="group relative flex items-center">
+                    <Info className="h-3.5 w-3.5 text-zinc-500 hover:text-zinc-300 cursor-pointer transition-colors" />
+                    <span className="pointer-events-none absolute bottom-full left-1/2 -translate-x-1/2 mb-2 w-48 scale-90 opacity-0 group-hover:scale-100 group-hover:opacity-100 transition-all duration-200 origin-bottom p-2 bg-[#0c0e16] border border-zinc-800 text-[10px] text-zinc-400 rounded-lg shadow-xl font-mono normal-case tracking-normal z-50 text-center font-normal">
+                      Metrics are derived from standard chess games only.
+                    </span>
+                  </span>
                 </h4>
               </div>
 
@@ -604,7 +610,7 @@ export default function OpeningIntelligence({ games, confidence }: OpeningIntell
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
 
             {/* BLOCK 1: REPERTOIRE (Popular & Best Openings) */}
-            <div className="glow-card rounded-2xl border border-zinc-900 bg-[#0a0d14]/65 p-6 md:p-8 flex flex-col justify-between">
+            <div className="glow-card rounded-2xl border border-zinc-900 bg-[#0a0d14]/65 p-6 md:p-8 flex flex-col justify-between" style={{ overflow: 'visible' }}>
               
               {/* Header & Controls */}
               <div className="flex justify-between items-start border-b border-zinc-900 pb-4 mb-6">
@@ -615,6 +621,12 @@ export default function OpeningIntelligence({ games, confidence }: OpeningIntell
                   <h4 className="font-mono text-sm font-bold text-white uppercase tracking-widest flex items-center gap-1.5">
                     <Trophy className="h-4 w-4 text-neon-blue" />
                     REPERTOIRE STRATEGY
+                    <span className="group relative flex items-center">
+                      <Info className="h-3.5 w-3.5 text-zinc-500 hover:text-zinc-300 cursor-pointer transition-colors" />
+                      <span className="pointer-events-none absolute bottom-full left-1/2 -translate-x-1/2 mb-2 w-48 scale-90 opacity-0 group-hover:scale-100 group-hover:opacity-100 transition-all duration-200 origin-bottom p-2 bg-[#0c0e16] border border-zinc-800 text-[10px] text-zinc-400 rounded-lg shadow-xl font-mono normal-case tracking-normal z-50 text-center font-normal">
+                        Metrics are derived from standard chess games only.
+                      </span>
+                    </span>
                   </h4>
                 </div>
                 {renderPerspectiveSelector(repertoirePerspective, setRepertoirePerspective)}
@@ -698,7 +710,7 @@ export default function OpeningIntelligence({ games, confidence }: OpeningIntell
 
             {/* BLOCK 2: TACTICAL PROFILE */}
             {tacticalProfile && (
-              <div className="glow-card rounded-2xl border border-zinc-900 bg-[#0a0d14]/65 p-6 md:p-8 flex flex-col justify-between">
+              <div className="glow-card rounded-2xl border border-zinc-900 bg-[#0a0d14]/65 p-6 md:p-8 flex flex-col justify-between" style={{ overflow: 'visible' }}>
                 
                 {/* Header */}
                 <div className="border-b border-zinc-900 pb-4 mb-6">
@@ -708,6 +720,12 @@ export default function OpeningIntelligence({ games, confidence }: OpeningIntell
                   <h4 className="font-mono text-sm font-bold text-white uppercase tracking-widest flex items-center gap-1.5">
                     <Flame className="h-4 w-4 text-purple-400" />
                     TACTICAL PROFILE
+                    <span className="group relative flex items-center">
+                      <Info className="h-3.5 w-3.5 text-zinc-500 hover:text-zinc-300 cursor-pointer transition-colors" />
+                      <span className="pointer-events-none absolute bottom-full left-1/2 -translate-x-1/2 mb-2 w-48 scale-90 opacity-0 group-hover:scale-100 group-hover:opacity-100 transition-all duration-200 origin-bottom p-2 bg-[#0c0e16] border border-zinc-800 text-[10px] text-zinc-400 rounded-lg shadow-xl font-mono normal-case tracking-normal z-50 text-center font-normal">
+                        Metrics are derived from standard chess games only.
+                      </span>
+                    </span>
                   </h4>
                 </div>
 
@@ -750,7 +768,7 @@ export default function OpeningIntelligence({ games, confidence }: OpeningIntell
             )}
 
             {/* BLOCK 3: WEAKNESSES (Worst & Collapse Warnings) */}
-            <div className="glow-card rounded-2xl border border-zinc-900 bg-[#0a0d14]/65 p-6 md:p-8 flex flex-col justify-between">
+            <div className="glow-card rounded-2xl border border-zinc-900 bg-[#0a0d14]/65 p-6 md:p-8 flex flex-col justify-between" style={{ overflow: 'visible' }}>
               
               {/* Header & Controls */}
               <div className="flex justify-between items-start border-b border-zinc-900 pb-4 mb-6">
@@ -761,6 +779,12 @@ export default function OpeningIntelligence({ games, confidence }: OpeningIntell
                   <h4 className="font-mono text-sm font-bold text-white uppercase tracking-widest flex items-center gap-1.5">
                     <Skull className="h-4 w-4 text-neon-red" />
                     WEAKNESS MONITOR
+                    <span className="group relative flex items-center">
+                      <Info className="h-3.5 w-3.5 text-zinc-500 hover:text-zinc-300 cursor-pointer transition-colors" />
+                      <span className="pointer-events-none absolute bottom-full left-1/2 -translate-x-1/2 mb-2 w-48 scale-90 opacity-0 group-hover:scale-100 group-hover:opacity-100 transition-all duration-200 origin-bottom p-2 bg-[#0c0e16] border border-zinc-800 text-[10px] text-zinc-400 rounded-lg shadow-xl font-mono normal-case tracking-normal z-50 text-center font-normal">
+                        Metrics are derived from standard chess games only.
+                      </span>
+                    </span>
                   </h4>
                 </div>
                 {renderPerspectiveSelector(weaknessPerspective, setWeaknessPerspective)}
@@ -836,7 +860,7 @@ export default function OpeningIntelligence({ games, confidence }: OpeningIntell
             </div>
 
             {/* BLOCK 4: ANTI-REPERTOIRE */}
-            <div className="glow-card rounded-2xl border border-zinc-900 bg-[#0a0d14]/65 p-6 md:p-8 flex flex-col justify-between">
+            <div className="glow-card rounded-2xl border border-zinc-900 bg-[#0a0d14]/65 p-6 md:p-8 flex flex-col justify-between" style={{ overflow: 'visible' }}>
               
               {/* Header & Controls */}
               <div className="flex justify-between items-start border-b border-zinc-900 pb-4 mb-6">
@@ -847,6 +871,12 @@ export default function OpeningIntelligence({ games, confidence }: OpeningIntell
                   <h4 className="font-mono text-sm font-bold text-white uppercase tracking-widest flex items-center gap-1.5">
                     <Shield className="h-4 w-4 text-neon-green" />
                     ANTI-REPERTOIRE
+                    <span className="group relative flex items-center">
+                      <Info className="h-3.5 w-3.5 text-zinc-500 hover:text-zinc-300 cursor-pointer transition-colors" />
+                      <span className="pointer-events-none absolute bottom-full left-1/2 -translate-x-1/2 mb-2 w-48 scale-90 opacity-0 group-hover:scale-100 group-hover:opacity-100 transition-all duration-200 origin-bottom p-2 bg-[#0c0e16] border border-zinc-800 text-[10px] text-zinc-400 rounded-lg shadow-xl font-mono normal-case tracking-normal z-50 text-center font-normal">
+                        Metrics are derived from standard chess games only.
+                      </span>
+                    </span>
                   </h4>
                 </div>
                 {renderPerspectiveSelector(antiRepertoirePerspective, setAntiRepertoirePerspective)}

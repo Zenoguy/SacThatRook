@@ -12,6 +12,7 @@ import RatingCards from '@/features/player/RatingCards';
 import RatingChart from '@/features/analytics/RatingChart';
 import WinRateDonut from '@/features/analytics/WinRateDonut';
 import ActivityHeatmap from '@/features/analytics/ActivityHeatmap';
+import CircadianTelemetry from '@/features/analytics/CircadianTelemetry';
 import OpeningIntelligence from '@/features/openings/OpeningIntelligence';
 import RecentGamesTable from '@/features/games/RecentGamesTable';
 import PlayerIdentityDossier from '@/features/player/PlayerIdentityDossier';
@@ -262,6 +263,15 @@ export default function PlayerPage({ params }: PlayerPageProps) {
                     <ActivityHeatmap games={games} confidence={analytics?.confidence} />
                   ) : (
                     renderLockPlaceholder(3, 'Chronological activity & game density heatmap', 'Awaiting activity map compilation')
+                  )}
+                </div>
+
+                {/* Section 2.5: Circadian Telemetry & Performance Matrix - Tier 3 */}
+                <div>
+                  {currentTier >= 3 ? (
+                    <CircadianTelemetry games={games} />
+                  ) : (
+                    renderLockPlaceholder(3, 'Circadian performance & combat timing matrix', 'Awaiting circadian intelligence scan')
                   )}
                 </div>
 

@@ -12,7 +12,8 @@ import {
   Terminal,
   ShieldCheck,
   AlertTriangle,
-  UserCheck
+  UserCheck,
+  Info
 } from 'lucide-react';
 
 interface PlayerIdentity {
@@ -74,7 +75,7 @@ export default function PlayerIdentityDossier({ identity, tacticalProfile, confi
   };
 
   return (
-    <div className="glow-card relative overflow-hidden rounded-2xl p-6 md:p-8 flex flex-col gap-6 md:gap-8 bg-[#0a0d15] border border-zinc-900">
+    <div className="glow-card relative rounded-2xl p-6 md:p-8 flex flex-col gap-6 md:gap-8 bg-[#0a0d15] border border-zinc-900" style={{ overflow: 'visible' }}>
       {/* Background Matrix/Dossier grid lines */}
       <div className="absolute inset-0 grid-scanlines opacity-5 pointer-events-none" />
       <div className="absolute top-0 right-0 h-36 w-36 bg-gradient-to-bl from-neon-green/10 via-transparent to-transparent opacity-50 rounded-bl-full pointer-events-none" />
@@ -86,8 +87,14 @@ export default function PlayerIdentityDossier({ identity, tacticalProfile, confi
             <Terminal className="h-5 w-5" />
           </div>
           <div>
-            <h4 className="font-mono text-xs font-bold text-zinc-400 uppercase tracking-widest">
+            <h4 className="font-mono text-xs font-bold text-zinc-400 uppercase tracking-widest flex items-center gap-1.5">
               BEHAVIORAL QUANTUM TELEMETRY
+              <span className="group relative flex items-center">
+                <Info className="h-3.5 w-3.5 text-zinc-550 hover:text-zinc-350 cursor-pointer transition-colors" />
+                <span className="pointer-events-none absolute bottom-full left-1/2 -translate-x-1/2 mb-2 w-48 scale-90 opacity-0 group-hover:scale-100 group-hover:opacity-100 transition-all duration-200 origin-bottom p-2 bg-[#0c0e16] border border-zinc-800 text-[10px] text-zinc-400 rounded-lg shadow-xl font-mono normal-case tracking-normal z-50 text-center font-normal">
+                  Metrics are derived from standard chess games only.
+                </span>
+              </span>
             </h4>
             <h3 className="font-mono text-[9px] text-neon-green font-bold tracking-widest uppercase mt-0.5 animate-pulse">
               // CLASSIFIED SUBJECT PROFILE DOSSIER

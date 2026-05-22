@@ -50,9 +50,18 @@ export default function RatingCards({ stats }: RatingCardsProps) {
               <div 
                 key={title} 
                 className="glow-card rounded-xl p-6 flex flex-col items-center justify-center min-h-[200px] border border-zinc-900 bg-[#0f121d] text-center"
+                style={{ overflow: 'visible' }}
               >
                 <Icon className="h-8 w-8 text-zinc-650 mb-3 opacity-40" />
-                <h3 className="font-mono text-sm font-bold text-zinc-500 uppercase tracking-widest">{title}</h3>
+                <h3 className="font-mono text-sm font-bold text-zinc-500 uppercase tracking-widest flex items-center gap-1.5 justify-center">
+                  {title}
+                  <span className="group relative flex items-center">
+                    <Info className="h-3.5 w-3.5 text-zinc-600 hover:text-zinc-400 cursor-pointer transition-colors" />
+                    <span className="pointer-events-none absolute bottom-full left-1/2 -translate-x-1/2 mb-2 w-48 scale-90 opacity-0 group-hover:scale-100 group-hover:opacity-100 transition-all duration-200 origin-bottom p-2 bg-[#0c0e16] border border-zinc-800 text-[10px] text-zinc-400 rounded-lg shadow-xl font-mono normal-case tracking-normal z-50 text-center">
+                      Metrics and ratings are for standard chess games only.
+                    </span>
+                  </span>
+                </h3>
                 <p className="text-xs text-zinc-650 font-mono mt-1">No rated history available</p>
               </div>
             );
@@ -68,13 +77,19 @@ export default function RatingCards({ stats }: RatingCardsProps) {
           const lossPct = total > 0 ? (record.loss / total) * 100 : 0;
 
           return (
-            <div key={title} className={`${accentGlow} rounded-xl p-6 flex flex-col justify-between h-full`}>
+            <div key={title} className={`${accentGlow} rounded-xl p-6 flex flex-col justify-between h-full`} style={{ overflow: 'visible' }}>
               <div>
                 {/* Heading */}
                 <div className="flex items-center justify-between mb-4">
                   <span className="flex items-center gap-1.5 font-mono text-xs font-bold text-zinc-400 uppercase tracking-widest">
                     <Icon className={`h-4 w-4 ${accentClass}`} />
                     {title}
+                    <span className="group relative flex items-center">
+                      <Info className="h-3.5 w-3.5 text-zinc-500 hover:text-zinc-300 cursor-pointer transition-colors" />
+                      <span className="pointer-events-none absolute bottom-full left-1/2 -translate-x-1/2 mb-2 w-48 scale-90 opacity-0 group-hover:scale-100 group-hover:opacity-100 transition-all duration-200 origin-bottom p-2 bg-[#0c0e16] border border-zinc-800 text-[10px] text-zinc-400 rounded-lg shadow-xl font-mono normal-case tracking-normal z-50 text-center">
+                        Metrics and ratings are for standard chess games only.
+                      </span>
+                    </span>
                   </span>
                   {best && (
                     <span className="flex items-center gap-1 font-mono text-[9px] text-zinc-500 uppercase">
@@ -124,13 +139,21 @@ export default function RatingCards({ stats }: RatingCardsProps) {
       {/* Puzzles & Tactics Row */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         {/* Puzzle Card */}
-        <div className="glow-card rounded-xl p-5 flex items-center justify-between">
+        <div className="glow-card rounded-xl p-5 flex items-center justify-between" style={{ overflow: 'visible' }}>
           <div className="flex items-center gap-4">
             <div className="flex h-12 w-12 items-center justify-center rounded-lg border border-[#1e293b] bg-[#0c0e16]">
               <Target className="h-6 w-6 text-neon-blue" />
             </div>
             <div>
-              <h4 className="font-mono text-xs font-bold text-zinc-400 uppercase tracking-widest">Tactics puzzles</h4>
+              <h4 className="font-mono text-xs font-bold text-zinc-400 uppercase tracking-widest flex items-center gap-1.5">
+                Tactics puzzles
+                <span className="group relative flex items-center">
+                  <Info className="h-3.5 w-3.5 text-zinc-500 hover:text-zinc-300 cursor-pointer transition-colors" />
+                  <span className="pointer-events-none absolute bottom-full left-1/2 -translate-x-1/2 mb-2 w-48 scale-90 opacity-0 group-hover:scale-100 group-hover:opacity-100 transition-all duration-200 origin-bottom p-2 bg-[#0c0e16] border border-zinc-800 text-[10px] text-zinc-400 rounded-lg shadow-xl font-mono normal-case tracking-normal z-50 text-center">
+                    Ratings are based on standard chess puzzles only.
+                  </span>
+                </span>
+              </h4>
               <p className="font-sans text-lg font-black text-white mt-0.5">
                 {puzzleRating ? `${puzzleRating} Peak` : 'No tactics record'}
               </p>
@@ -142,13 +165,21 @@ export default function RatingCards({ stats }: RatingCardsProps) {
         </div>
 
         {/* Puzzle Rush Card */}
-        <div className="glow-card rounded-xl p-5 flex items-center justify-between">
+        <div className="glow-card rounded-xl p-5 flex items-center justify-between" style={{ overflow: 'visible' }}>
           <div className="flex items-center gap-4">
             <div className="flex h-12 w-12 items-center justify-center rounded-lg border border-[#1e293b] bg-[#0c0e16]">
               <Trophy className="h-6 w-6 text-yellow-500" />
             </div>
             <div>
-              <h4 className="font-mono text-xs font-bold text-zinc-400 uppercase tracking-widest">Puzzle Rush</h4>
+              <h4 className="font-mono text-xs font-bold text-zinc-400 uppercase tracking-widest flex items-center gap-1.5">
+                Puzzle Rush
+                <span className="group relative flex items-center">
+                  <Info className="h-3.5 w-3.5 text-zinc-500 hover:text-zinc-300 cursor-pointer transition-colors" />
+                  <span className="pointer-events-none absolute bottom-full left-1/2 -translate-x-1/2 mb-2 w-48 scale-90 opacity-0 group-hover:scale-100 group-hover:opacity-100 transition-all duration-200 origin-bottom p-2 bg-[#0c0e16] border border-zinc-800 text-[10px] text-zinc-400 rounded-lg shadow-xl font-mono normal-case tracking-normal z-50 text-center">
+                    High scores are based on standard chess puzzles only.
+                  </span>
+                </span>
+              </h4>
               <p className="font-sans text-lg font-black text-white mt-0.5">
                 {puzzleRushScore ? `${puzzleRushScore} Best Score` : 'No Puzzle Rush record'}
               </p>
