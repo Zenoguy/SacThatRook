@@ -40,11 +40,11 @@ export default function Navbar() {
             <span className="hidden sm:inline">Chess.com API</span>
           </a>
           <Link
-            href="/#about"
+            href="/docs"
             className="flex items-center gap-1.5 rounded-lg px-3 py-1.5 font-mono text-xs text-zinc-400 hover:text-white transition-colors"
           >
             <HelpCircle className="h-4 w-4" />
-            <span className="hidden sm:inline">FAQ</span>
+            <span className="hidden sm:inline">Documentation</span>
           </Link>
         </nav>
       </div>
